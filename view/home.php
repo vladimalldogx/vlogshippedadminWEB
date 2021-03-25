@@ -47,20 +47,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Homepage/Dashboard-Vlogshipped</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<link rel="icon" type="image/png" href="image/lock.png">
 	<link rel="stylesheet" href="assets/css/bs.css">
 	<link rel="stylesheet" href="assets/css/fa.css">
 	<link rel="stylesheet" href="assets/css/progress.css">
 	<link rel="stylesheet" href="assets/css/animate.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/sidebar-themes.css">
+	<link rel="stylesheet" href="assets/css/sidebar-themes.css">
+	<link rel="stylesheet" href="assets/css/card.css">
+	
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
 	 <!-- Vendor CSS Files -->
 	 <link href="view/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="view/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="view/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="view/assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="view/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="view/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="view/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
  </head>
 
@@ -141,10 +148,10 @@
 			<!-- /top navigation -->
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<div class="container-fluid">
+				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Dashboard (Home)</h3> </div>
+							<h3>Dashboard(Home)</h3> </div>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
@@ -154,11 +161,26 @@
 									<h2>Summary Reports</h2>
 									<div class="clearfix"></div>
 								</div>
-								<div class="x_content "> 
-									<div class="col-md-4"><h3>No of Influencers Register </h3>
-									<!--insert Data-->
+								<div class="x_content"> 
+									<!--count section-->
+								<section id="counts" class="counts">
+     						    <div class="row" data-aos="fade-up">
+							<!--row content-->
+							<div class="row">		 
+							<!--count influencer-->
+          					<div class="col-lg-3 col-md-6">
 
-									<?php 
+           					 <div class="count-box influencer">
+								<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Influencer</div>
+ 
+									<a class="btn btn-primary btn-lg pull-right" style="padding:6px 12px;" href="reports/influencerReport.php">See Account Reports(INFLUENCER)</a>
+            						<?php 
 										$influencer = 1;
 										require_once("../connection.php");
 										$query = "select * from users where user_type = $influencer";
@@ -168,124 +190,207 @@
 										if($res){
 											$rows = mysqli_num_rows($res);
 											if($rows){
-												echo"<table class='table-striped'>";
-												echo"<tbody>";
-												echo"<tr>";
-												echo"<td>$rows</td>";
-												echo"</tr>";
-												echo"</tbody>";
-												echo"</table>";
+												
+												echo"<div class='h5 mb-0 font-weight-bold text-gray-800'><spandata-toggle='counter-up'>$rows</span></div>";
+										
 											}
 										}
 					
 									?>
+										</div>
+										<div class="col-auto">
+                                            <i class="icofont-users-alt-5 fa-2x text-gray-300"></i>
+                                        </div>
 										
-										
-									
-									<!--<table class="table-striped">
-									
-									
-									<tbody>
-									<tr ng-repeat="l in users ">
-									
-									<td>{{ l.noOfStud}} </td>
-									</tr>
-								</tbody>
-								</table>
-									<!--data end-->
-									<br>
-									<a class ="btn btn-primary" href="reports/influencerReport.php">Goto User Account Reports</a>
-									</div>
-									<div class="col-md-4"><h3>No of Sponsor Registered</h3>
-									
-									<?php 
-										$sponsor = 0;
-										require_once("../connection.php");
-										$query = "select * from users where user_type = $sponsor";
-                    
-										$res = mysqli_query($con, $query);
-										$count = 0;
-										if($res){
-											$rows = mysqli_num_rows($res);
-											if($rows){
-												echo"<spandata-toggle='counter-up'>$rows</span>";
-											}
-										}
-										?>
-										
-										
-									
-									<br>
-									<a class="btn btn-info" href="reports/sponsorReport.php">Goto User Account Reports</a>
-									</div>
-									<div class="col-md-4"><h3>Total Amount</h3>
-									<!--insert Data-->
-									
-									<?php 
-										require_once("../connection.php");
-										$sql_count = "select amount from subscription";
-                    
-										$res = mysqli_query($con, $sql_count);
-										$count = 0;
-										while($rows = mysqli_fetch_assoc($res)){
-											$count += $rows['amount'];
-										}
-					
-										 echo "<h2>$count</h2> Pesos"; 
-									 ?>
-									<!--data end-->
-									<br>
-									<a class="btn btn-primary" href="reports/subReport.php">Goto Purchase/Subscription Reports</a>
-									</div>
-									<div class="col-md-4"><h3>Total content uploaded</h3> 
-									<h3>by the users</h3>
-									<!--insert Data-->
-									<?php 
-										$sponsor = 0;
-										require_once("../connection.php");
-										$query = "select * from content";
-                    
-										$res = mysqli_query($con, $query);
-										$count = 0;
-										if($res){
-											$rows = mysqli_num_rows($res);
-											if($rows){
-												echo"$rows";
-											}
-										}
-										?>
-									<!--data end-->
-									<br>
-									<a class="btn btn-primary" href="reports/contentReport.php">Goto Campaign and Content Reports</a>
-									</div>
-									<div class="col-md-4"><h3>Total campaign Application applied From The Influencer</h3>
-									<!--insert Data-->
-									<?php 
-										$as = 1;
-										require_once("../connection.php");
-										$query = "select * from application where application_status = $as";
-                    
-										$res = mysqli_query($con, $query);
-										$count = 0;
-										if($res){
-											$rows = mysqli_num_rows($res);
-											if($rows){
-												echo"$rows";
-											}
-										}
-										?>
-									<!--data end-->
-									<br>
-									<a class="btn btn-primary" href="reports/campaignReport.php">Goto Campaign</a>
-									<a class="btn btn-primary" href="reports/influencerReport.php">Show List of Influencer</a>
-									</div>
+              				
+								</div>
+                                </div>
+							  </div>
+								</div>
+								</div>
+           					 </div>
+							  <!--influencer count end-->
+								<!--count sponsor-->
+								<div class="col-lg-3 col-md-6">
+
+								<div class="count-box influencer">
+								<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+												Total Sponsor</div>
+												<a class="btn btn-primary btn-lg  pull-right"style="padding:6px 12px;" href="reports/sponsorReport.php">See Account Reports(Sponsor)</a>
+												<?php 
+												$sponsor = 0;
+												require_once("../connection.php");
+												$query = "select * from users where user_type = $sponsor";
+							
+												$res = mysqli_query($con, $query);
+												$count = 0;
+												if($res){
+													$rows = mysqli_num_rows($res);
+													if($rows){
+														echo"<div class='h5 mb-0 font-weight-bold text-gray-800'><spandata-toggle='counter-up'>$rows</span></div>";
+													}
+												}
+												?>	
+										</div>
+										<div class="col-auto">
+											<i class="icofont-users-alt-5 fa-2x text-gray-300"></i>
+										</div>
+
+								<!--<h4><p>Total influencer Registered</p></h4>-->
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+
+							  <!--SPONSOR count end-->
+								<!--count amount-->
+								<div class="col-lg-3 col-md-6">
+
+								<div class="count-box influencer">
+								<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+												Total Amount Earn</div>
+												<a class="btn btn-primary btn-lg  pull-right"style="padding:6px 12px; "href="reports/subReport.php">Goto Purchase/Subscription Reports</a>
+												<?php 
+													require_once("../connection.php");
+													$sql_count = "select amount from subscription";
+								
+													$res = mysqli_query($con, $sql_count);
+													$count = 0;
+													while($rows = mysqli_fetch_assoc($res)){
+														$count += $rows['amount'];
+													}
+								
+													echo "<div class='h5 mb-0 font-weight-bold text-gray-800'><spandata-toggle='counter-up'>$count Pesos</span></div>"; 
+												?>
+										</div>
+										<div class="col-auto">
+											<i class="icofont-users-alt-5 fa-2x text-gray-300"></i>
+										</div>
+
+								<!--<h4><p>Total influencer Registered</p></h4>-->
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+
+							<!--total content count end-->
+								<!--count content-->
+								<!--count amount-->
+								<div class="col-lg-3 col-md-6">
+
+								<div class="count-box influencer">
+								<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+												Content Uploaded</div>
+												<div class="btn-group-vertical pull-right">
+												<a class="btn btn-info btn-lg  pull-right mr-1"style="padding:6px 12px; "href="reports/contentReport.php">Show Content Report</a>		
+												</div>
+												<?php 
+													require_once("../connection.php");
+													$query = "select * from content";
+								
+													$res = mysqli_query($con, $query);
+													$count = 0;
+													if($res){
+														$rows = mysqli_num_rows($res);
+														if($rows){
+															echo"$rows";
+														}
+													}
+								
+													//echo "<div class='h5 mb-0 font-weight-bold text-gray-800'><spandata-toggle='counter-up'>$count Pesos</span></div>"; 
+												?>
+										</div>
+										<div class="col-auto">
+											<i class="icofont-users-alt-5 fa-2x text-gray-300"></i>
+										</div>
+
+								<!--<h4><p>Total influencer Registered</p></h4>-->
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+
+							<!--total content count end-->
+							<!--influencer count end-->
+							<!--total content count end-->
+								<!--count content-->
+								<!--count amount-->
+								<div class="col-lg-3 col-md-6">
+
+								<div class="count-box influencer">
+								<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+												Total Campaign Applicant</div>
+												<div class="btn-group-vertical pull-right">
+												<a class="btn btn-info btn-lg  pull-right mr-1"style="padding:6px 12px; "href="reports/campaignReport.php"> See Campaign Report</a>		
+												</div>
+												<?php 
+													$as = 1;
+													require_once("../connection.php");
+													$query = "select * from application where application_status = $as";
+								
+													$res = mysqli_query($con, $query);
+													$count = 0;
+													if($res){
+														$rows = mysqli_num_rows($res);
+														if($rows){
+															echo"$rows";
+														}
+													}
+													//echo "<div class='h5 mb-0 font-weight-bold text-gray-800'><spandata-toggle='counter-up'>$count Pesos</span></div>"; 
+												?>
+										</div>
+										<div class="col-auto">
+											<i class="icofont-users-alt-5 fa-2x text-gray-300"></i>
+										</div>
+
+								<!--<h4><p>Total influencer Registered</p></h4>-->
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+
+							<!--total campaign-applicatn count end-->
+
+     						    </div>
+							</section>
 								</div>
 							</div>
 						</div>
+					</div>x
 					</div>
 				</div>
 			</div>
+			
 			<!-- /page content -->
+			
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right"> Capstone 42 2020
