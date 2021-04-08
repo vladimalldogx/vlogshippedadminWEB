@@ -56,6 +56,21 @@ function __construct(){
         }catch(PDOException $e){ echo $e->getMessage();}
         return $ok;
     }
+
+    function insertCat($data,$fields,$table){
+        $ok;
+        $fld=implode(",",$fields);
+        $q=array();
+        foreach($data as $d) $q[]="?";
+        $plc=implode(",",$q);
+        $sql="INSERT INTO categories($fld) VALUES($plc)";
+        try{
+            $stmt=$this->conn->prepare($sql);
+            $ok=$stmt->execute($data);				
+        }catch(PDOException $e){ echo $e->getMessage();}
+        return $ok;
+    }
+    
 // Retrieve
 function getAllRecord($table){
         $rows;
@@ -67,7 +82,7 @@ function getAllRecord($table){
         }catch(PDOException $e){ echo $e->getMessage();}
         return $rows;
     }
-
+   
     function getAllSubscriptions($table){
         $rows;
         $sql="SELECT *, subscription.id as subs_id FROM subscription LEFT JOIN users on subscription.user_id = users.id";
@@ -89,6 +104,8 @@ function getAllRecord($table){
         }catch(PDOException $e){ echo $e->getMessage();}
         return $rows;
     }
+	
+	
 
     function getAllSponsorRecord($table){
         $rows;
@@ -141,6 +158,16 @@ function getAllRecord($table){
     
         return $rows;
     }
+    function getAllCat($table){
+        $rows;
+        $sql="SELECT * FROM categories";
+        try{
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute();
+            $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){ echo $e->getMessage();}
+        return $rows;
+    }
 
     function getAllCampaign($table){
         $rows;
@@ -175,7 +202,26 @@ function getRecord($table,$field_id,$ref_id){
     }catch(PDOException $e){ echo $e->getMessage();}
     return $row;
 }
-
+function getCat($category_id,$table){
+    $row;
+    $sql="SELECT * FROM $table WHERE $category_id=?";
+    try{
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute(array($category_id));
+        $row=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){ echo $e->getMessage();}
+    return $row;
+}
+function getCatById($table,$category_name,$ref_id){
+$sql = "SELECT * FROM category WHERE category_name = ?";
+    try{
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(array($ref_id));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+}catch(PDOException $e){ echo $e->getMessage();}
+    return $row;
+   // $this->conn = null;
+}
 // Update
 function updateRecord($table,$fields,$data,$field_id,$ref_id){
             $ok;
@@ -231,6 +277,7 @@ function activateSubscriptionRate($table,$field_id,$ref_id){
 
          return $ok;
  }
+ 
 // Delete
 function deleteRecord($table,$field_id,$ref_id){
     $ok;
@@ -270,7 +317,15 @@ function deleteCampaign($table,$field_id,$ref_id){
     }catch(PDOException $e){ echo $e->getMessage();}
     return $ok;
 }
-  
+function deleteCat($table,$category_id,$ref_id){
+    $ok;
+    $sql="DELETE FROM $table WHERE $category_id=?";
+    try{
+        $stmt=$this->conn->prepare($sql);
+        $ok=$stmt->execute(array($ref_id));				
+    }catch(PDOException $e){ echo $e->getMessage();}
+    return $ok;
+}
 // Some functions
     function countRecord($field,$table){
         $sql = "SELECT count($field) FROM $table";

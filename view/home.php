@@ -110,6 +110,7 @@
 								    <li> <a href="ratings.php"><i class="fa fa-check-square-o"></i> Feedback and Ratings Management(content)</a> </li>
 									<li> <a href="influencer.php"><i class="fa fa-check-square-o"></i> Feedback and Ratings Management(Influencer and Sponsor) </a> </li>
 									<li> <a href="subscriptionrate.php"><i class="fa fa-star"></i> Manage Subscription </a> </li>
+									<li> <a href="categoriesMgt.php"><i class="fa fa-star"></i> Manage Categories </a> </li>
               				</ul>
            					 </li>
 								<li class="dropdown">

@@ -136,7 +136,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            
+                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addStudent">Add a category</button>
                         </div>
                     </div>
                 </div>
@@ -145,21 +145,17 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h1>Manage Subscription Rates</h1>
+                                <h1>Manage Category</h1>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                    
+                                
                                 <!-- start project list -->
                                 <div class="col-md-3 col-sm-3 col-xs-6">
-                                <a href="#" ng-click="addRate(s.id)" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Add Subscription Rate </a>
-                                 </div>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                </ul>
-                                <div class="clearfix"></div>
+                                    <input type="text" placeholder="Search Department" class="form-control col-md-7 col-xs-12" ng-model="search" /> </div>
                                 <table class="table table-striped projects">
                                     <thead>
                                         <tr>
@@ -169,27 +165,14 @@
                                     <tbody>
                                         <!-- END MODAL -->
                                         <tr ng-repeat="s in students |  filter:search">
-                                            <td>{{ s.subscription_rate_id}}</td>
-                                            <td>{{ s.monthly_rate}}</td>
-                                            <td>{{ s.annual_rate}}</td>
-                                            <td>{{ s.subscription_status}}</td>
-                                         
-                                           
-                                            <td ng-if = "s.subscription_status == 0">
-                                
-                                                <a href="#" ng-click="activateRate(s.subscription_rate_id)" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Activate </a>
-                                                <a href="#" ng-click="deleteRate(s.subscription_rate_id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                          
-                                           </td>
-
-                                            <td ng-if = "s.subscription_status == 1">
-
-                                                <a href="#" ng-click="deactivateRate(s.subscription_rate_id)" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Deactivate </a>
-                                                <a href="#" ng-click="deleteRate(s.subscription_rate_id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-
-                                           </td>
+                                            <td>{{ s.category_id}}</td>
+                                            <td>{{ s.category_name}}</td>
+            
+                                            <td>
                                                 <!-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> -->
-                                                
+                                                <a href="#" ng-click="editStudent(s.category_id)" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                <a href="#" ng-click="viewStudent(s.category_id)" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View </a>
+                                                <a href="#" ng-click="deleteStudent(s.category_id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a> </td>
                                         </tr>
                                         <!-- END MODAL -->
                                     </tbody>
@@ -205,79 +188,29 @@
         <!-- end of page content -->
         <!-- footer content -->
         <footer>
-            <div class="pull-right"> Software Engineering 2018 </div>
+            <div class="pull-right"> Capstone 42 2020 </div>
             <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
         <!-- ADD MODAL -->
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="activateRateModal">
-                <div class="modal-dialog" style="width:40%" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
-                            <h3 class="modal-title">Activate Subscription</h3>
-                            <div class="modal-body">
-                                <!-- <form method="POST" action="../controller/departmentController/deleteDept.php"> -->
-                                <blockquote>
-                                    <p>Are you sure you want to Activate this Subscription?</p>
-                                </blockquote>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn button-secondary" data-dismiss="modal" type="button">Cancel</button>
-                                <button class="btn btn-primary" id="activateRate">Activate</button>
-                                <!-- </form> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-         </div>
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="deactivateModal">
-            <div class="modal-dialog" style="width:40%" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
-                        <h3 class="modal-title">Deactivate User</h3>
-                        <div class="modal-body">
-                            <!-- <form method="POST" action="../controller/departmentController/deleteDept.php"> -->
-                            <blockquote>
-                                <p>Are you sure you want to Deactivate this User?</p>
-                            </blockquote>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn button-secondary" data-dismiss="modal" type="button">Cancel</button>
-                            <button class="btn btn-primary" id="deactivate">Deactivate</button>
-                            <!-- </form> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="addRateModal">
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="addStudent">
             <div class="modal-dialog modal-lg" style="width:40%" role="document">
                 <div class="modal-content ">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
-                        <h3 class="modal-title">Add Rate</h3> </div>
+                        <h3 class="modal-title">Add a Category</h3> </div>
                     <div class="modal-body">
-                        <form class="form-horizontal form-label-left" method="post" id="user-form" role="form">
+                        <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/addCat.php">
+                            
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_id">Monthly Rate<span class="required">*</span> </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Category Name <span class="required">*</span> </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="m_rate" id= "m_rate" required="required" class="form-control"> </div>
+                                    <input type="text" name="category_name" required="required" class="form-control"> </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Annual Rate <span class="required">*</span> </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="annual_rate" id= "annual_rate" required="required" class="form-control"> </div>
-                            </div>    
-                          
+                           
                             <div class="modal-footer">
                                 <button class="btn button-secondary" data-dismiss="modal" type="button">Cancel</button>
-                                <button class="btn btn-primary" id="AddRate" type="submit">Submit</button>
+                                <button class="btn btn-primary" name="addStud" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -285,8 +218,68 @@
             </div>
         </div>
     </div>
+    <!-- END MODAL -->
+    <!--edit Student -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="editStudent">
+        <div class="modal-dialog" style="width:40%" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
+                    <h3 class="modal-title">Edit Category</h3> </div>
+                <div class="modal-body">
+                    <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/updateCat.php">
+                        <input type="hidden" name="id" value="" id="edit_category_id">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Category Name <span class="required">*</span> </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" id="edit_category_name" name="category_name" required="required" class="form-control"> </div>
+                        </div>
+                       
+                        <div class="modal-footer">
+                            <button class="btn button-secondary" data-dismiss="modal" type="button">Cancel</button>
+                            <button class="btn btn-primary" name="updateStud" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end view modal -->
+    <!-- view MODAL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="viewStudent">
+        <div class="modal-dialog" style="width:40%" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
+                    <h3 class="modal-title">Edit Category</h3> </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="view_category_id">Student Id : </label>
+                        <p id="view_category_id"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Family Name : </label>
+                        <p id="view_category_name"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Given Name : </label>
+                        <p id="view_stud_fname"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="view_dept_id">Dept. ID</label>
+                        <p id="view_dept_id"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Year Level : </label>
+                        <p id="view_stud_yearLevel"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Email : </label>
+                        <p id="view_email"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Date Apply : </label>
+                        <p id="view_date_applied"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn button-secondary" data-dismiss="modal" type="button">OK</button>
+                    </div>
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="deleteRateModal">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end view -->
+    <!-- delete modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteStudent">
         <div class="modal-dialog" style="width:40%" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -295,12 +288,12 @@
                     <div class="modal-body">
                         <!-- <form method="POST" action="../controller/departmentController/deleteDept.php"> -->
                         <blockquote>
-                            <p>Are you sure you want to Delete this User?</p>
+                            <p>Are you sure you want to remove this Category?</p>
                         </blockquote>
                     </div>
                     <div class="modal-footer">
                         <button class="btn button-secondary" data-dismiss="modal" type="button">Cancel</button>
-                        <button class="btn btn-primary" id="deleteRateButton">Delete</button>
+                        <button class="btn btn-primary" id="delStud">Delete</button>
                         <!-- </form> -->
                     </div>
                 </div>
@@ -344,8 +337,8 @@
     <script>
         var app = angular.module("myApp", []);
         app.controller("myCtrl", function($http, $scope) {
-            $http.get('../controller/studentController/allSubsRate.php').then(function(response) {
-                $scope.student_label = ["Subscription Rate ID", "Monthly Rate", "Annual Rate", "Subscription Status", "ACTION"];
+            $http.get('../controller/studentController/allCat.php').then(function(response) {
+                $scope.student_label = ["id", "Family Name",  "ACTION"];
                 $scope.students = response.data;
             });
             $http.get('../controller/departmentController/allDept.php').then(function(response) {
@@ -357,101 +350,25 @@
             $scope.closeModal = function(modal_id) {
                 $('#' + modal_id).hide();
             };
-            $scope.editStudent = function(stud_id) {
-                $http.post('../controller/studentController/getStud.php', {
-                    'stud_id': stud_id
+            $scope.editStudent = function(category_id) {
+                $http.post('../controller/studentController/getCat.php', {
+                    'category_id': category_id
                 }).then(function(response) {
-                    console.log(stud_id);
-                    $('#edit_stud_id').val(response.data.stud_id);
-                    $('#edit_stud_lname').val(response.data.stud_lname);
-                    $('#edit_stud_fname').val(response.data.stud_fname);
-                    $('#edit_dept_id').val(response.data.dept_id);
-                    $('#edit_stud_yearLevel').val(response.data.stud_yearLevel);
-                    $('#edit_email').val(response.data.email);
-                    $('#edit_date_applied').val(response.data.date_applied);
+                    console.log(category_id);
+                    $('#edit_category_id').val(response.data.category_id);
+                    $('#edit_category_name').val(response.data.category_name);
+                    
                     // console.log(response.data.date_applied);
                     $('#editStudent').modal('show');
                 });
 
             };
-
-            $scope.changedValue = function(item){
-                if(item == 1){
-                    $http.get('../controller/studentController/allStud.php').then(function(response) {
-                    $scope.student_label = ["id", "first_name", "last_name", "gender", "birthday", "user_type", "user_status", "email_address", "mobile_number", "website", "description", "ACTION"];
-                    $scope.students = response.data;
-                });
-                }else{
-                    $http.get('../controller/studentController/allSponsor.php').then(function(response) {
-                    $scope.student_label = ["id", "first_name", "last_name", "gender", "birthday", "user_type", "user_status", "email_address", "mobile_number", "website","description", "ACTION"];
-                    $scope.students = response.data;
-                });
-                }
-            };
-            $scope.viewStudent = function(stud_id) {
-                $http.post('../controller/studentController/getStud.php', {
-                    'stud_id': stud_id
-                }).then(function(response) {
-                    console.log(stud_id);
-                    $('#view_stud_id').text(response.data.stud_id);
-                    $('#view_stud_lname').text(response.data.stud_lname);
-                    $('#view_stud_fname').text(response.data.stud_fname);
-                    $('#view_dept_id').text(response.data.dept_id);
-                    $('#view_stud_yearLevel').text(response.data.stud_yearLevel);
-                    $('#view_email').text(response.data.email);
-                    $('#view_date_applied').text(response.data.date_applied);
-                    $('#viewStudent').modal('show');
-                });
-            };
-            $scope.deleteRate = function(stud_id) {
-                console.log(stud_id);
-                $('#deleteRateModal').modal('show');
-                $('#deleteRateButton').on('click', function() {
-                    $http.post('../controller/studentController/deleteRate.php', {
-                        'stud_id': stud_id
-                    }).then(function(response) {
-                        location.reload();
-                        console.log(response);
-                    });
-                });
-            };
-
-            $scope.addRate = function(stud_id) {
-                console.log("1");
-                $('#addRateModal').modal('show');
-                $('#AddRate').on('click', function() {
-                    
-                    $http.post('../controller/studentController/addRate.php', {
-                        'm_rate' : $('#m_rate').val(),
-                        'a_rate' : $('#annual_rate').val()
-
-                    }).then(function(response) {
-                        location.reload();
-                        console.log(response);
-                    });
-                });
-            };
-
-        
-            $scope.activateRate = function(stud_id) {
-                console.log(stud_id);
-                $('#activateRateModal').modal('show');
-                $('#activateRate').on('click', function() {
-                    $http.post('../controller/studentController/activateRate.php', {
-                        'stud_id': stud_id
-                    }).then(function(response) {
-                        location.reload();
-                        console.log(response);
-                    });
-                });
-            };
-
-        $scope.deactivateRate = function(stud_id) {
-                console.log(stud_id);
-                $('#deactivateModal').modal('show');
-                $('#deactivate').on('click', function() {
-                    $http.post('../controller/studentController/deactivateRate.php', {
-                        'stud_id': stud_id
+            $scope.deleteStudent = function(category_id) {
+                console.log(category_id);
+                $('#deleteStudent').modal('show');
+                $('#delStud').on('click', function() {
+                    $http.post('../controller/studentController/deleteCat.php', {
+                        'category_id': category_id
                     }).then(function(response) {
                         location.reload();
                         console.log(response);

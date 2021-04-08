@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2020 at 03:49 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Apr 07, 2021 at 08:57 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -43,7 +41,17 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'sample', 'sample', '2020-02-02 05:05:15', '2020-02-02 05:19:12');
+(1, 'admin', 'admin', 'sample', 'sample', '2020-02-02 05:05:15', '2020-02-02 05:19:12'),
+(14, 'qwe', '76d80224611fc919a5d54f0ff9fba446', 'qweqwe', 'qwe', '2020-12-14 09:15:57', '2020-12-14 09:15:57'),
+(15, 'asdsss', 'bff149a0b87f5b0e00d9dd364e9ddaa0', 'asd', 'asd', '2020-12-14 09:20:43', '2020-12-14 09:20:43'),
+(16, 'werty', '3b81f18ef43570954590cffd052ed6dc', 'werty', 'werty', '2020-12-16 08:06:29', '2020-12-16 08:06:29'),
+(17, 'Chans', '3b81f18ef43570954590cffd052ed6dc', 'Chans', 'Chans', '2020-12-16 08:11:03', '2020-12-16 08:11:03'),
+(18, 'werty', '6c7e133d1d3ecf056a3f06a4cfd08fa9', 'wertry', 'werty', '2020-12-16 08:26:54', '2020-12-16 08:26:54'),
+(19, 'Gale ', '3b81f18ef43570954590cffd052ed6dc', 'Galems', 'Moran', '2020-12-16 08:31:53', '2020-12-16 08:31:53'),
+(20, 'Gale ', '3b81f18ef43570954590cffd052ed6dc', 'Galems', 'Moran', '2020-12-16 08:36:51', '2020-12-16 08:36:51'),
+(21, 'admin', '3b81f18ef43570954590cffd052ed6dc', 'admin', 'admin', '2020-12-16 08:45:46', '2020-12-16 08:45:46'),
+(22, 'admins', '3b81f18ef43570954590cffd052ed6dc', 'admins', 'admins', '2020-12-16 10:24:56', '2020-12-16 10:24:56'),
+(23, 'BearBrand', '3b81f18ef43570954590cffd052ed6dc', 'Mark Christian', 'Moran', '2021-04-05 00:50:35', '2021-04-05 00:50:35');
 
 --
 -- Triggers `admin`
@@ -82,7 +90,8 @@ INSERT INTO `application` (`id`, `campaign_id`, `application_status`, `user_id`,
 (11, 6, 1, 20, '2020-11-16 18:42:17', '2020-11-16 18:42:17'),
 (12, 6, 1, 20, '2020-11-16 18:43:18', '2020-11-16 18:43:18'),
 (13, 6, 1, 20, '2020-11-17 18:58:37', '2020-11-17 18:58:37'),
-(14, 6, 1, 10, '2020-11-20 11:49:36', '2020-11-20 11:49:36');
+(14, 6, 1, 10, '2020-11-20 11:49:36', '2020-11-20 11:49:36'),
+(15, 5, 1, 10, '2020-12-18 07:20:33', '2020-12-18 07:20:33');
 
 --
 -- Triggers `application`
@@ -117,7 +126,8 @@ CREATE TABLE `application_sampling` (
 
 INSERT INTO `application_sampling` (`id`, `sampling_id`, `application_status`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 5, 1, 10, '2020-10-28 16:12:10', '2020-10-28 16:12:10'),
-(2, 6, 1, 10, '2020-11-20 11:49:18', '2020-11-20 11:49:18');
+(2, 6, 1, 10, '2020-11-20 11:49:18', '2020-11-20 11:49:18'),
+(3, 5, 1, 10, '2020-12-18 06:23:20', '2020-12-18 06:23:20');
 
 --
 -- Triggers `application_sampling`
@@ -176,6 +186,24 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `Category_ID` int(11) NOT NULL,
+  `Category_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`Category_ID`, `Category_name`) VALUES
+(1, 'Kids');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `content`
 --
 
@@ -229,7 +257,8 @@ CREATE TABLE `followers` (
 INSERT INTO `followers` (`follow_id`, `sponsor_id`, `influencer_id`, `created_at`, `updated_at`) VALUES
 (3, 18, 10, '2020-11-05 14:27:33', '2020-11-05 14:27:33'),
 (9, 18, 20, '2020-11-05 19:42:52', '2020-11-05 19:42:52'),
-(10, 18, 15, '2020-11-05 19:45:08', '2020-11-05 19:45:08');
+(10, 18, 15, '2020-11-05 19:45:08', '2020-11-05 19:45:08'),
+(11, 12, 20, '2020-12-18 06:35:58', '2020-12-18 06:35:58');
 
 --
 -- Triggers `followers`
@@ -268,7 +297,9 @@ INSERT INTO `notification` (`notification_id`, `notification_status`, `notificat
 (17, 0, 21, 10, 4, '2020-11-17 19:01:58', '2020-11-17 19:01:58'),
 (18, 3, 20, 21, 4, '2020-11-17 19:02:15', '2020-11-17 19:06:05'),
 (19, 2, 10, 21, 6, '2020-11-20 11:49:36', '2020-11-20 11:49:36'),
-(20, 3, 10, 12, 4, '2020-11-20 12:19:34', '2020-11-20 12:19:43');
+(20, 3, 10, 12, 4, '2020-11-20 12:19:34', '2020-11-20 12:19:43'),
+(21, 0, 12, 20, 4, '2020-12-18 06:36:12', '2020-12-18 06:36:12'),
+(22, 2, 10, 17, 5, '2020-12-18 07:20:33', '2020-12-18 07:20:33');
 
 --
 -- Triggers `notification`
@@ -417,13 +448,6 @@ CREATE TABLE `subscription_rate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `subscription_rate`
---
-
-INSERT INTO `subscription_rate` (`subscription_rate_id`, `monthly_rate`, `annual_rate`, `subscription_status`, `created_at`, `updated_at`) VALUES
-(3, 12, 12, 0, '2020-11-06 16:26:44', '2020-11-06 16:26:44');
-
---
 -- Triggers `subscription_rate`
 --
 DELIMITER $$
@@ -466,8 +490,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_type`, `user_status`, `email_address`, `profile_picture`, `password`, `company_name`, `first_name`, `last_name`, `category`, `gender`, `birthday`, `mobile_number`, `website`, `description`, `created_at`, `updated_at`) VALUES
-(10, 1, 1, 'sample@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F461432?alt=media&token=f2ed180e-590a-4454-a93e-2645ac68e397', '$2y$10$hS3Ktpp9wtAWeIojOICsluH7EcnG4HmOXNlXKYsbMbgHLLAVurjOa', 'none', 'xtian', 'awesome', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'none', 'none', '2020-02-08 15:40:16', '2020-11-06 12:42:55'),
-(12, 0, 1, 'sample1@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F463784?alt=media&token=c1855b1d-f55e-49f1-b682-9df7d1cfec2d', '$2y$10$B9zUNRkwRqoUXZeK.M/qYOR9KLViKqBW2sFjfPmGR5QJl9iLsumgO', 'ALX COMPANY', 'sample1', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'www.google.com', 'none', '2020-02-10 04:50:33', '2020-10-28 18:52:59'),
+(10, 1, 1, 'sample@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F461432?alt=media&token=f2ed180e-590a-4454-a93e-2645ac68e397', '$2y$10$hS3Ktpp9wtAWeIojOICsluH7EcnG4HmOXNlXKYsbMbgHLLAVurjOa', 'none', 'xtianss', 'awesomesss', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'none', 'none', '2020-02-08 15:40:16', '2020-12-18 07:20:07'),
+(12, 0, 1, 'sample1@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F463784?alt=media&token=c1855b1d-f55e-49f1-b682-9df7d1cfec2d', '$2y$10$B9zUNRkwRqoUXZeK.M/qYOR9KLViKqBW2sFjfPmGR5QJl9iLsumgO', 'ALX COMPANYsss', 'sample1', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'www.google.com', 'none', '2020-02-10 04:50:33', '2020-12-18 06:32:30'),
 (15, 1, 0, 'sample12@gmail.com', 'none', '$2y$10$3ufYUurkASH.8M12GnyrTuNO69jesi0uWGRQdN/XfQu5P6n9M/d6y', 'none', 'black pink', 'how you like that', 'TRAVEL', 'female', '11-11-2012', '09994093374', 'none', 'none', '2020-02-10 05:19:24', '2020-11-06 12:42:58'),
 (16, 0, 1, 'sample11@gmail.com', 'none', '$2y$10$y6rwHQjXWulTHY9YAOTeK.xNLCH99T8NphzUfG1MSx6ZENrVExx.2', 'ALX COMPANY', 'sample', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'www.dailymotion.com', 'none', '2020-02-10 05:55:13', '2020-11-05 16:15:59'),
 (17, 0, 1, 'sample14@gmail.com', 'none', '$2y$10$rFFYvLflmY88QRZHwux9CO/VVEG7rVR7JAYkT5D49GNnLnr3lZb46', 'ALX COMPANY', 'sample', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'Sample.com', 'none', '2020-02-10 06:40:41', '2020-11-05 16:16:02'),
@@ -514,6 +538,12 @@ ALTER TABLE `application_sampling`
 --
 ALTER TABLE `campaign`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`Category_ID`);
 
 --
 -- Indexes for table `content`
@@ -571,75 +601,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `application_sampling`
 --
 ALTER TABLE `application_sampling`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `campaign`
 --
 ALTER TABLE `campaign`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `sampling`
 --
 ALTER TABLE `sampling`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `subscription_rate`
 --
 ALTER TABLE `subscription_rate`
-  MODIFY `subscription_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `subscription_rate_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
