@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 08:57 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: Apr 08, 2021 at 11:11 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -51,7 +53,8 @@ INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `cre
 (20, 'Gale ', '3b81f18ef43570954590cffd052ed6dc', 'Galems', 'Moran', '2020-12-16 08:36:51', '2020-12-16 08:36:51'),
 (21, 'admin', '3b81f18ef43570954590cffd052ed6dc', 'admin', 'admin', '2020-12-16 08:45:46', '2020-12-16 08:45:46'),
 (22, 'admins', '3b81f18ef43570954590cffd052ed6dc', 'admins', 'admins', '2020-12-16 10:24:56', '2020-12-16 10:24:56'),
-(23, 'BearBrand', '3b81f18ef43570954590cffd052ed6dc', 'Mark Christian', 'Moran', '2021-04-05 00:50:35', '2021-04-05 00:50:35');
+(23, 'BearBrand', '3b81f18ef43570954590cffd052ed6dc', 'Mark Christian', 'Moran', '2021-04-05 00:50:35', '2021-04-05 00:50:35'),
+(24, 'darude', '3defee7332ab52fa02a90713df41980a', 'Darude', 'Sandstorm', '2021-04-08 03:43:14', '2021-04-08 03:43:14');
 
 --
 -- Triggers `admin`
@@ -190,16 +193,19 @@ DELIMITER ;
 --
 
 CREATE TABLE `categories` (
-  `Category_ID` int(11) NOT NULL,
-  `Category_name` text NOT NULL
+  `category_id` int(11) NOT NULL,
+  `category_name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`Category_ID`, `Category_name`) VALUES
-(1, 'Kids');
+INSERT INTO `categories` (`category_id`, `category_name`) VALUES
+(4, 'meme'),
+(5, 'Travel'),
+(6, 'lol'),
+(7, 'fashion');
 
 -- --------------------------------------------------------
 
@@ -448,6 +454,14 @@ CREATE TABLE `subscription_rate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `subscription_rate`
+--
+
+INSERT INTO `subscription_rate` (`subscription_rate_id`, `monthly_rate`, `annual_rate`, `subscription_status`, `created_at`, `updated_at`) VALUES
+(1, 499, 123, 1, '2021-04-08 03:43:46', '2021-04-08 03:43:59'),
+(2, 200, 2002, 1, '2021-04-08 05:17:22', '2021-04-08 05:17:31');
+
+--
 -- Triggers `subscription_rate`
 --
 DELIMITER $$
@@ -490,14 +504,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_type`, `user_status`, `email_address`, `profile_picture`, `password`, `company_name`, `first_name`, `last_name`, `category`, `gender`, `birthday`, `mobile_number`, `website`, `description`, `created_at`, `updated_at`) VALUES
-(10, 1, 1, 'sample@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F461432?alt=media&token=f2ed180e-590a-4454-a93e-2645ac68e397', '$2y$10$hS3Ktpp9wtAWeIojOICsluH7EcnG4HmOXNlXKYsbMbgHLLAVurjOa', 'none', 'xtianss', 'awesomesss', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'none', 'none', '2020-02-08 15:40:16', '2020-12-18 07:20:07'),
 (12, 0, 1, 'sample1@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F463784?alt=media&token=c1855b1d-f55e-49f1-b682-9df7d1cfec2d', '$2y$10$B9zUNRkwRqoUXZeK.M/qYOR9KLViKqBW2sFjfPmGR5QJl9iLsumgO', 'ALX COMPANYsss', 'sample1', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'www.google.com', 'none', '2020-02-10 04:50:33', '2020-12-18 06:32:30'),
-(15, 1, 0, 'sample12@gmail.com', 'none', '$2y$10$3ufYUurkASH.8M12GnyrTuNO69jesi0uWGRQdN/XfQu5P6n9M/d6y', 'none', 'black pink', 'how you like that', 'TRAVEL', 'female', '11-11-2012', '09994093374', 'none', 'none', '2020-02-10 05:19:24', '2020-11-06 12:42:58'),
+(15, 1, 1, 'sample12@gmail.com', 'none', '$2y$10$3ufYUurkASH.8M12GnyrTuNO69jesi0uWGRQdN/XfQu5P6n9M/d6y', 'none', 'black pink', 'how you like that', 'TRAVEL', 'female', '11-11-2012', '09994093374', 'none', 'none', '2020-02-10 05:19:24', '2021-04-08 04:55:54'),
 (16, 0, 1, 'sample11@gmail.com', 'none', '$2y$10$y6rwHQjXWulTHY9YAOTeK.xNLCH99T8NphzUfG1MSx6ZENrVExx.2', 'ALX COMPANY', 'sample', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'www.dailymotion.com', 'none', '2020-02-10 05:55:13', '2020-11-05 16:15:59'),
 (17, 0, 1, 'sample14@gmail.com', 'none', '$2y$10$rFFYvLflmY88QRZHwux9CO/VVEG7rVR7JAYkT5D49GNnLnr3lZb46', 'ALX COMPANY', 'sample', 'sample', 'TRAVEL', 'male', '11-11-2012', '09994093374', 'Sample.com', 'none', '2020-02-10 06:40:41', '2020-11-05 16:16:02'),
 (18, 0, 1, 'sample2@gmail.com', 'none', '$2y$10$jfatiXqYf2.fqR12BmDGSOWXHw9ApBdt4kPlwnpUWYDUM38qBOsAG', 'ALX COMPANY', 'sample', 'sample', 'FASHION', 'male', '11-11-2012', '09994093374', 'Www.sample.com', 'none', '2020-11-05 12:53:28', '2020-11-05 12:53:28'),
-(20, 1, 1, 'sample3@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F447620?alt=media&token=d05d1594-4ce4-44db-b950-9e13c039486d', '$2y$10$z3as60Y0Oqn8bqUbC8JZHevkedF91eMXkPPg028wadRWl9RMJwthq', 'none', 'sample', 'sample', 'OTHER', 'male', '11-11-2012', '09994093374', 'www.fb.com', 'none', '2020-11-05 18:50:27', '2020-11-05 18:50:52'),
-(21, 0, 1, 'sample4@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F447620?alt=media&token=e16e0146-4de2-4eb9-ac20-9e94db934fdf', '$2y$10$gTa69C7g2z4zO58jTgW7ruOf53pdgI0mrdYpX4JqCGq3kw1Z3Yuk6', 'ALX COMPANY4', 'sample1', 'sample1', 'OTHER', 'male', '11-11-2012', '09994093373', 'www.fb.com', 'none1', '2020-11-05 19:53:16', '2020-11-13 17:11:49');
+(20, 1, 1, 'sample3@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F447620?alt=media&token=d05d1594-4ce4-44db-b950-9e13c039486d', '$2y$10$z3as60Y0Oqn8bqUbC8JZHevkedF91eMXkPPg028wadRWl9RMJwthq', 'none', 'sample', 'sample', 'OTHER', 'male', '11-11-2012', '09994093374', 'www.fb.com', 'none', '2020-11-05 18:50:27', '2021-04-08 04:55:58'),
+(21, 0, 1, 'sample4@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshipped.appspot.com/o/images%2F447620?alt=media&token=e16e0146-4de2-4eb9-ac20-9e94db934fdf', '$2y$10$gTa69C7g2z4zO58jTgW7ruOf53pdgI0mrdYpX4JqCGq3kw1Z3Yuk6', 'ALX COMPANY4', 'sample1', 'sample1', 'OTHER', 'male', '11-11-2012', '09994093373', 'www.fb.com', 'none1', '2020-11-05 19:53:16', '2020-11-13 17:11:49'),
+(22, 1, 1, 'sample01@gmail.com', 'https://firebasestorage.googleapis.com/v0/b/vlogshippedthesis.appspot.com/o/images%2F160053?alt=media&token=a14d17d7-3e94-46a8-8265-001058fa3d20', '$2y$10$REpehJxKOSKbSBDZZgNlqOikj4pyEOe1LIJjabaVKxsdZVN8wd/1a', 'none', 'Eir', 'Aoi', 'BEAUTY', 'female', '11-11-2012', '09994093374', 'www.fb.com', 'none', '2021-04-08 05:28:56', '2021-04-08 05:29:36');
 
 --
 -- Triggers `users`
@@ -543,7 +557,7 @@ ALTER TABLE `campaign`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`Category_ID`);
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `content`
@@ -601,67 +615,81 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `application_sampling`
 --
 ALTER TABLE `application_sampling`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `campaign`
 --
 ALTER TABLE `campaign`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
   MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `sampling`
 --
 ALTER TABLE `sampling`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `subscription_rate`
 --
 ALTER TABLE `subscription_rate`
-  MODIFY `subscription_rate_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `subscription_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
