@@ -46,7 +46,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Manage Subscription Rate-Vlogshipped</title>
+    <title>Manage Category-Vlogshipped</title>
     <link rel="icon" type="image/png" href="image/lock.png">
     <link rel="stylesheet" href="assets/css/bs.css">
     <link rel="stylesheet" href="assets/css/fa.css">
@@ -338,7 +338,7 @@
         var app = angular.module("myApp", []);
         app.controller("myCtrl", function($http, $scope) {
             $http.get('../controller/studentController/allCat.php').then(function(response) {
-                $scope.student_label = ["id", "Family Name",  "ACTION"];
+                $scope.student_label = ["id", "categoryname",  "ACTION"];
                 $scope.students = response.data;
             });
             $http.get('../controller/departmentController/allDept.php').then(function(response) {

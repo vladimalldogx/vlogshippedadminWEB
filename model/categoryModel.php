@@ -4,7 +4,7 @@ require 'db/dbhelper.php';
 
 
 Class category extends DBHelper{
-	private $table = 'categories';
+	private $table = 'category';
     private $fields = array(
 		
         'category_name',

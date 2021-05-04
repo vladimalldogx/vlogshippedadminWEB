@@ -63,13 +63,14 @@ function __construct(){
         $q=array();
         foreach($data as $d) $q[]="?";
         $plc=implode(",",$q);
-        $sql="INSERT INTO categories($fld) VALUES($plc)";
+        $sql="INSERT INTO category($fld) VALUES($plc)";
         try{
             $stmt=$this->conn->prepare($sql);
             $ok=$stmt->execute($data);				
         }catch(PDOException $e){ echo $e->getMessage();}
         return $ok;
     }
+
     
 // Retrieve
 function getAllRecord($table){
@@ -160,7 +161,7 @@ function getAllRecord($table){
     }
     function getAllCat($table){
         $rows;
-        $sql="SELECT * FROM categories";
+        $sql="SELECT * FROM category";
         try{
             $stmt=$this->conn->prepare($sql);
             $stmt->execute();
@@ -212,8 +213,8 @@ function getCat($category_id,$table){
     }catch(PDOException $e){ echo $e->getMessage();}
     return $row;
 }
-function getCatById($table,$category_name,$ref_id){
-$sql = "SELECT * FROM category WHERE category_name = ?";
+function getCatById($table,$category_id,$ref_id){
+    $sql = "SELECT * FROM category WHERE category_id = '$ref_id' ";
     try{
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(array($ref_id));
@@ -277,7 +278,15 @@ function activateSubscriptionRate($table,$field_id,$ref_id){
 
          return $ok;
  }
- 
+ function updateCat($category_name,$category_id,$data){
+    $ok;
+    $sql="UPDATE category SET category_name = '$category_name' WHERE category_id='$category_id'";
+    try{
+        $stmt=$this->conn->prepare($sql);
+        $ok=$stmt->execute($data);
+    }catch(PDOException $e){ echo $e->getMessage();}
+    return $ok;
+}
 // Delete
 function deleteRecord($table,$field_id,$ref_id){
     $ok;
