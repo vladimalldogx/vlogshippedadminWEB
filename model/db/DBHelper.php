@@ -70,6 +70,19 @@ function __construct(){
         }catch(PDOException $e){ echo $e->getMessage();}
         return $ok;
     }
+    function insertScat($data,$fields,$table){
+        $ok;
+        $fld=implode(",",$fields);
+        $q=array();
+        foreach($data as $d) $q[]="?";
+        $plc=implode(",",$q);
+        $sql="INSERT INTO subcat($fld) VALUES($plc)";
+        try{
+            $stmt=$this->conn->prepare($sql);
+            $ok=$stmt->execute($data);				
+        }catch(PDOException $e){ echo $e->getMessage();}
+        return $ok;
+    }
 
     
 // Retrieve
@@ -169,7 +182,16 @@ function getAllRecord($table){
         }catch(PDOException $e){ echo $e->getMessage();}
         return $rows;
     }
-
+    function getAllScat($table){
+        $rows;
+        $sql="SELECT * FROM subcat";
+        try{
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute();
+            $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){ echo $e->getMessage();}
+        return $rows;
+    }
     function getAllCampaign($table){
         $rows;
         $sql="SELECT *, campaign.description as descrip, campaign.id as campaign_id FROM $table LEFT JOIN users on campaign.user_id = users.id";

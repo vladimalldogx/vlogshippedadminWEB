@@ -95,7 +95,7 @@
 									<li> <a href="influencer.php"><i class="fa fa-check-square-o"></i> Feedback and Ratings Management(Influencer and Sponsor) </a> </li>
 									<li> <a href="subscriptionrate.php"><i class="fa fa-star"></i> Manage Subscription </a> </li>
                                     <li> <a href="categoriesMgt.php"><i class="fa fa-star"></i> Manage Categories </a> </li>
-                                    <li> <a href="tagMgt.php"><i class="fa fa-star"></i> Manage Subcat/Tags </a> </li>\
+                                    <li> <a href="categoriesMgt.php"><i class="fa fa-star"></i> Manage Subcat/Tags </a> </li>\
               				</ul>
            					 </li>
 								<li class="dropdown">
@@ -137,7 +137,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addStudent">Add a category</button>
+                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addStudent">Add a subcategory</button>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h1>Manage Category</h1>
+                                <h1>Manage Subcategory /tags</h1>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
                                 </ul>
@@ -156,7 +156,7 @@
                                 
                                 <!-- start project list -->
                                 <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <input type="text" placeholder="Search Department" class="form-control col-md-7 col-xs-12" ng-model="search" /> </div>
+                                    <input type="text" placeholder="Search tags" class="form-control col-md-7 col-xs-12" ng-model="search" /> </div>
                                 <table class="table table-striped projects">
                                     <thead>
                                         <tr>
@@ -166,14 +166,14 @@
                                     <tbody>
                                         <!-- END MODAL -->
                                         <tr ng-repeat="s in students |  filter:search">
-                                            <td>{{ s.category_id}}</td>
-                                            <td>{{ s.category_name}}</td>
+                                            <td>{{ s.scat_id}}</td>
+                                            <td>{{ s.scat_name}}</td>
             
                                             <td>
                                                 <!-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> -->
-                                                <a href="#" ng-click="editStudent(s.category_id)" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                <a href="#" ng-click="viewStudent(s.category_id)" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View </a>
-                                                <a href="#" ng-click="deleteStudent(s.category_id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a> </td>
+                                                <a href="#" ng-click="editStudent(s.scat_id)" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                <a href="#" ng-click="viewStudent(s.scat_id)" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View </a>
+                                                <a href="#" ng-click="deleteStudent(s.scat_id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a> </td>
                                         </tr>
                                         <!-- END MODAL -->
                                     </tbody>
@@ -199,14 +199,14 @@
                 <div class="modal-content ">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
-                        <h3 class="modal-title">Add a Category</h3> </div>
+                        <h3 class="modal-title">Add a Tags/Subcategory</h3> </div>
                     <div class="modal-body">
-                        <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/addCat.php">
+                        <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/addTag.php">
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Category Name <span class="required">*</span> </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Add new tag <span class="required">*</span> </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="category_name" required="required" class="form-control"> </div>
+                                    <input type="text" name="scat_name" required="required" class="form-control"> </div>
                             </div>
                            
                             <div class="modal-footer">
@@ -228,12 +228,12 @@
                     <button type="button" class="close" data-dismiss="modal"> <span>&times;</span> </button>
                     <h3 class="modal-title">Edit Category</h3> </div>
                 <div class="modal-body">
-                    <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/updateCat.php">
-                        <input type="hidden" name="id" value="" id="edit_category_id">
+                    <form class="form-horizontal form-label-left" method="post" action="../controller/studentController/updateTag.php">
+                        <input type="hidden" name="id" value="" id="edit_scat_id">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stud_fname">Category Name <span class="required">*</span> </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" id="edit_category_name" name="category_name" required="required" class="form-control"> </div>
+                                <input type="text" id="edit_scat_name" name="scat_name" required="required" class="form-control"> </div>
                         </div>
                        
                         <div class="modal-footer">
@@ -255,10 +255,10 @@
                     <h3 class="modal-title">Edit Category</h3> </div>
                 <div class="modal-body">
                     <div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="view_category_id">Student Id : </label>
-                        <p id="view_category_id"></p>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="view_scat_id">Student Id : </label>
+                        <p id="view_scat_id"></p>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Family Name : </label>
-                        <p id="view_category_name"></p>
+                        <p id="view_scat_name"></p>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locker_status">Given Name : </label>
                         <p id="view_stud_fname"></p>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="view_dept_id">Dept. ID</label>
@@ -338,8 +338,8 @@
     <script>
         var app = angular.module("myApp", []);
         app.controller("myCtrl", function($http, $scope) {
-            $http.get('../controller/studentController/allCat.php').then(function(response) {
-                $scope.student_label = ["id", "categoryname",  "ACTION"];
+            $http.get('../controller/studentController/allTag.php').then(function(response) {
+                $scope.student_label = ["id", "subcategory/tags",  "ACTION"];
                 $scope.students = response.data;
             });
             $http.get('../controller/departmentController/allDept.php').then(function(response) {
@@ -351,25 +351,25 @@
             $scope.closeModal = function(modal_id) {
                 $('#' + modal_id).hide();
             };
-            $scope.editStudent = function(category_id) {
-                $http.post('../controller/studentController/getCat.php', {
-                    'category_id': category_id
+            $scope.editStudent = function(scat_id) {
+                $http.post('../controller/studentController/getTag.php', {
+                    'scat_id': scat_id
                 }).then(function(response) {
-                    console.log(category_id);
-                    $('#edit_category_id').val(response.data.category_id);
-                    $('#edit_category_name').val(response.data.category_name);
+                    console.log(scat_id);
+                    $('#edit_scat_id').val(response.data.scat_id);
+                    $('#edit_scat_name').val(response.data.scat_name);
                     
                     // console.log(response.data.date_applied);
                     $('#editStudent').modal('show');
                 });
 
             };
-            $scope.deleteStudent = function(category_id) {
-                console.log(category_id);
+            $scope.deleteStudent = function(scat_id) {
+                console.log(scat_id);
                 $('#deleteStudent').modal('show');
                 $('#delStud').on('click', function() {
-                    $http.post('../controller/studentController/deleteCat.php', {
-                        'category_id': category_id
+                    $http.post('../controller/studentController/deleteTag.php', {
+                        'scat_id': scat_id
                     }).then(function(response) {
                         location.reload();
                         console.log(response);
